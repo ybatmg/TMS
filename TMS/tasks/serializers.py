@@ -7,13 +7,11 @@ class LabelsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AttachmentsSerializer(serializers.ModelSerializer):
-    task = serializers.StringRelatedField()
     class Meta:
         model = Attachments
         fields = '__all__'
 
 class CommentsSerializer(serializers.ModelSerializer):
-    task = serializers.StringRelatedField()
     class Meta:
         model = Comments
         fields = '__all__'
@@ -36,7 +34,6 @@ class TaskSerializer(serializers.ModelSerializer):
     
 
 class TaskStageSerializer(serializers.ModelSerializer):
-    task = serializers.SerializerMethodField()
     class Meta:
        model = TaskStage
        fields = '__all__'
