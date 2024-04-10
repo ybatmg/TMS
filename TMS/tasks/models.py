@@ -34,7 +34,7 @@ class Task(models.Model):
 
 class Attachments(models.Model):
     name = models.CharField(max_length=200)
-    image = models.ImageField("attachments",upload_to='attachments/', null=True,blank=True)
+    image = models.ImageField("attachments",upload_to='attachments/',null=True,blank=True)
     size = models.CharField(max_length=200)
     task = models.ForeignKey(Task,null=True,on_delete=models.CASCADE)
 
@@ -42,11 +42,12 @@ class Attachments(models.Model):
         return self.name
     
 class Comments(models.Model):
-    name = models.CharField(max_length=100)
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     image = models.ImageField("comments",upload_to='comments/', null=True,blank=True)
     message = models.TextField()
     date = models.DateField(auto_now_add=True,null=True)
     task = models.ForeignKey(Task,null=True,on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.name
+
+    # def __str__(self):
+    #     return self.name

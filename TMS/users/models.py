@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+
+    
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     date_of_birth = models.DateField('date of birth',null = True,blank= True)
@@ -19,7 +21,6 @@ class CustomUser(AbstractUser):
     # Professional
     company_name = models.CharField("company name", max_length=100, blank=True)
     position = models.CharField("position", max_length=100, blank=True)
-    bio = models.TextField("bio", blank=True)
     
     # Social
     website_url = models.URLField("website URL", max_length=200, blank=True)
@@ -36,3 +37,13 @@ class CustomUser(AbstractUser):
     
     def __str__(self):
         return self.username
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class Work(models.Model):
+    title = models.CharField(max_length=50,null=True,blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    def __str__(self):
+        return self.title

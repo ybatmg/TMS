@@ -57,7 +57,12 @@ class AttachmentsList(viewsets.ModelViewSet):
     serializer_class = AttachmentsSerializer
 
 class CommentsList(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializer
+
+    def list(self,request):
+        queryset=Comments.objects.all()
+        serializer = CommentsSerializer(queryset,many=True)
+        return Response(serializer.data)
