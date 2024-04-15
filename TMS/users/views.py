@@ -12,24 +12,6 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.authentication import SessionAuthentication
 from . models import CustomUser,Work
 
-# Create your views here.
-
-# @api_view(['POST'])
-# def signup_view(request):
-#     if request.method == "POST":
-#         username = request.data.get("username")
-#         password = request.data.get("password")
-#         email = request.data.get('email')
-
-#         try:
-#             user = User.objects.create_user(username=username,password=password,email=email)
-#             if user:
-#                 return Response({'message':'User logged in successfully!!'},status=status.HTTP_201_CREATED)
-#         except IntegrityError as e:
-#             return Response({'message':'Username already exists.'},status=status.HTTP_400_BAD_REQUEST)
-#         except Exception as e:
-#             return Response({"message":"Unable to create user."},status=status.HTTP_406_NOT_ACCEPTABLE)
-    
 class UserView(viewsets.ModelViewSet):
    
     queryset = CustomUser.objects.all()
