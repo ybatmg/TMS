@@ -1,7 +1,7 @@
 from django.contrib.auth.models import BaseUserManager
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email,username, first_name,last_name, password=None):
+    def create_user(self, email, username, first_name, last_name, password=None):
         if not email:
             raise ValueError("Users must have an email address")
         
@@ -11,9 +11,10 @@ class CustomUserManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
         )
-        user.set_password(password)
+        user.set_password(password)  # This ensures the password is hashed
         user.save(using=self._db)
         return user
+
 
     def create_superuser(self, email,username, first_name,last_name,password=None,):
         user = self.create_user(

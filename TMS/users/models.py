@@ -1,10 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from users.manager import CustomUserManager
+
 # Create your models here.
 
     
 class CustomUser(AbstractUser):
+    objects = CustomUserManager()
     email = models.EmailField(unique=True)
     date_of_birth = models.DateField('date of birth',null = True,blank= True)
     phone_number = models.IntegerField(null=True)
