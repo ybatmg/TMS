@@ -39,6 +39,7 @@ class UserView(viewsets.ModelViewSet):
         model = CustomUser
         fields = '__all__'
 
+
 class WorkList(viewsets.ModelViewSet):
     queryset = Work.objects.all()
     serializer_class = WorkSerializer
